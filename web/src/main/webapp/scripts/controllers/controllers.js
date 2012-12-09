@@ -4,11 +4,10 @@ teamForceApp.controller('SearchController', function ($scope,$rootScope,mongoPro
 
     $scope.skills = teamForceSkillsTestData.skills;
     $scope.datas = teamForceSkillsTestData.skills;
-    $scope.skillToSearch="eccomi!";
     $scope.searchPeople = function (name, surname, skill) {
         //$scope.people = teamForceSkillsTestData.getPeople(name,surname,skill);
-        mongoProxy.query(function(a){
-            $scope.people=a;
+        mongoProxy.query({name:$scope.nameFilter || 'allname',surname:$scope.surnameFilter || 'allsurname', skill:$scope.skillToSearch || 'allskill'},function(data){
+            $scope.people=data;
         });
     }
 

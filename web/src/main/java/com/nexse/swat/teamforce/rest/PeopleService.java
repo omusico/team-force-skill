@@ -35,13 +35,13 @@ public class PeopleService {
 
         List<String> filters = new ArrayList<String>();
         if (!name.equals("allname")) {
-            filters.add("name :'" + name + "'");
+            filters.add("'name' :'" + name + "'");
         }
         if (!surname.equals("allsurname")) {
-            filters.add("surname :'" + surname + "'");
+            filters.add("'surname' :'" + surname + "'");
         }
         if (!skill.equals("allskill")) {
-            filters.add("skill :'" + skill + "'");
+            filters.add("'skill' :'" + skill + "'");
         }
 
         StringBuilder filtersJson = new StringBuilder();
@@ -50,7 +50,9 @@ public class PeopleService {
             filtersJson.append(filter);
             filtersJson.append(",");
         }
-        filtersJson.deleteCharAt(filtersJson.length() - 1);
+        if (filtersJson.length() > 1) {
+            filtersJson.deleteCharAt(filtersJson.length() - 1);
+        }
         filtersJson.append("}");
 
         Iterable<String> all = friends.find(filtersJson.toString()).as(String.class);
@@ -61,7 +63,9 @@ public class PeopleService {
             buff.append(s);
             buff.append(',');
         }
-        buff.deleteCharAt(buff.length() - 1);
+        if (buff.length() > 1) {
+            buff.deleteCharAt(buff.length() - 1);
+        }
         buff.append("]");
 
 /*
