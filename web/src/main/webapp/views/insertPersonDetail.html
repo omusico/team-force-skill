@@ -1,0 +1,99 @@
+<div class="container">
+    <div ng-controller="NewPersonController" class="border" >
+        <form>
+
+            <div>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <label>Name</label>
+                        <input type="text" disabled ng-model="currentSelectedPerson.name">
+                    </div>
+                    <div class="span4">
+                        <label>Surname</label>
+                        <input type="text" disabled ng-model="currentSelectedPerson.surname">
+                    </div>
+                    <div class="span4">
+                        <label>Company Number</label>
+                        <input type="text" disabled ng-model="currentSelectedPerson.companyNumber">
+                    </div>
+                </div>
+            </div>
+            <section>
+                <div class="row-fluid">
+                    <div class="span12"
+                         ng-show="currentSelectedPerson.skills!=null && currentSelectedPerson['spa-questions'].length>0">
+                        <label class="question-title"><h2>Sviluppo di Single Page Application</h2></label>
+                        <table class="table table-striped questions" >
+                            <tr ng-repeat="question in currentSelectedPerson['spa-questions']">
+                                <td>{{question.comment}}</td>
+                                <td>
+                                    <stars ng-stars="question.stars" chosen-style="star-yes"
+                                           clickable-style="star-no"></stars>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row-fluid">
+                    <div class="span12"
+                         ng-show="currentSelectedPerson.skills!=null && currentSelectedPerson['fe-server-questions'].length>0">
+                        <label class="question-title"><h2>Domande riguardanti lo sviluppo di Server Side FE</h2></label>
+                        <table class="table table-striped questions">
+                            <tr ng-repeat="question in currentSelectedPerson['fe-server-questions']">
+                                <td>{{question.comment}}</td>
+                                <td>
+                                    <stars ng-stars="question.stars" chosen-style="star-yes"
+                                           clickable-style="star-no"></stars>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h2>Personalizza i tuoi skill</h2>
+                        <h4>Questa sezione ti consente di aggiungere i tui skill.
+                            I più comuni sono stati già aggiunti al tuo profilo, devi solo scegliere il tuo livello di competenza.
+                            Per inserirne altri inizia a scrivere nella combo, puoi scegliere da quelli che appaiono o inserirne di nuovi.
+                        </h4>
+                        <div>
+                            <type-ahead id="skills" source-data="datas" out-data="newSkill"
+                                        placeholder="type a skill..."></type-ahead>
+                            <span class="btn" ng-click="addNewSkill(newSkill)" style="vertical-align: super;">Add</span>
+                        </div>
+
+                    </div>
+                    <div class=" row-fluid">
+                            <div class="span8"
+                                 ng-show="currentSelectedPerson.skills!=null && currentSelectedPerson.skills.length>0">
+                                <label><h4>I miei skill sono:</h4></label>
+                                <table class="table table-striped">
+                                    <tr ng-repeat="skill in currentSelectedPerson.skills">
+                                        <td><i class="icon-remove" ng-click="removeSkill(skill.name)"></i></td>
+                                        <td>{{skill.name}}</td>
+                                        <td>
+                                            <stars ng-stars="skill.stars" chosen-style="star-yes"
+                                                   clickable-style="star-no"></stars>
+                                        </td>
+                                        <td><textarea rows="3" style="width: 300px" ng-model="skill.comment"
+                                                      placeholder="You can describe with some words..."></textarea></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+            </section>
+            <div class="row-fluid">
+                <div class="span12">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

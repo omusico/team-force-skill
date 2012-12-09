@@ -1,0 +1,33 @@
+.form-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.border{
+    border: 1px solid #DDD;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.star-yes{
+    content: url(../img/star-lit4.png);
+}
+.star-no{
+    content: url(../img/star4.png);
+}
+
+table.questions {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.questions td{
+    width: 50%;
+}
+table.questions td:nth-child(2n){
+    text-align: right;
+}
+.question-title{
+    margin-left: 10px;
+}
